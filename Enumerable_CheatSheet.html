@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/Enumerable_CheatSheet.css"/>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  </head>
+
+  <body><div class="wrapper">
+
+    <header>
+
+      <h1 id="topic">Enumerable</h1>
+
+    </header>
+
+    <section>
+
+      <h3 class="section_header">#all?</h3>
+
+      <div class="description">
+        <p>The all? method iterates over each element in the array, comparing them all based on the data entered into the code block.  The return value is true if all of the elements meet the criteria, or false if at least one element does not.  If no block is given, the return value is true because Ruby uses an implicitly-true code block design: { |elem| elem }.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array_num = [1, 2, 3, 5, 10]<br>array_num.all? { |elem| p elem > 3 }</pre>
+        <pre class="prettyprint result">false</pre>
+      </div>
+
+      <div class="description">
+        <p>The all? method iterates over each element of the hash, comparing them all based on the data entered into the code block.  The return value is true if all of the elements meet the criteria, or false if at least one element does not.  If no block is given, the return value is true because Ruby uses an implicitly-true code block design: { |elem| elem }.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">meal = { "App" => "cheesebread", "Entree" => "steak", "Dessert" => "bread" }<br>puts meal.all? { |key, value| value.match('bread') }</pre>
+        <pre class="prettyprint result">false</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#any?</h3>
+
+      <div class="description">
+        <p>The any? method iterates over each element in the array, looking to see if any of them contain the data entered into the code block.  The return value is true if an element meets the criteria, or false if an element does not.  If no block is given, the return value is true because Ruby uses an implicitly-true code block design: { |elem| elem }.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array_num = [1, 2, 3, 5, 10]<br>array_num.any? { |elem| p elem > 7 }</pre>
+        <pre class="prettyprint result">false<br>false<br>false<br>false<br>true</pre>
+      </div>
+
+      <div class="description">
+        <p>The any? method iterates over each element of the hash, looking to see if any of them contain the data entered into the code block.  The return value is true if an element meets the criteria, or false if an element does not.  If no block is given, the return value is true because Ruby uses an implicitly-true code block design: { |elem| elem }.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">meal = { "App" => "cheesebread", "Entree" => "steak", "Dessert" => "bread" }<br>puts meal.any? { |key, value| value.match('bread') }</pre>
+        <pre class="prettyprint result">true</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#chunk</h3>
+
+      <div class="description">
+        <p>The chunk method iterates over each element of the array, grouping the elements together in arrays based on the return value of the code block.<br>Consecutive elements with equivalent code block return values are "chunked" together.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array_of_stuff = [1, 10, 713, "I", "can't", 3, "drive", 55, "fifty", "five"]<br>array_of_stuff.chunk { |elem|<br>  elem.is_a? String<br>}.each { |result, items| puts "#{result}: #{items}" }</pre>
+        <pre class="prettyprint result">false: [1, 10, 713]<br>true: ["I", "can't"]<br>false: [3]<br>true: ["drive"]<br>false: [55]<br>true: ["fifty", "five"]</pre>
+      </div>
+
+      <div class="description">
+        <p>The chunk method iterates over each element of the hash, grouping the elements together in arrays based on the return value of the code block.<br>Consecutive elements with equivalent code block return values are "chunked" together.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">XXXXX<br>XXXXXXXXXX<br>XXXXXXX</pre>
+        <pre class="prettyprint result">YYYYYY<br>YYYYY<br>YYYYYYYY</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#collect</h3>
+      <h4 class="section_header sub">#map</h4>
+
+      <div class="description">
+        <p>The collect method iterates over each element in the array, runs the code block on each element, and returns a new array.<br>The collect method will yield each member of an array to the block.  But unlike the each method (which just returns the original array), the collect method will collect the results in a new array and return that instead.<br><em>The collect! method modifies the original array (NOT an Enumerable method).</em></p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">make_em_grow = [2, 4, 6, 8]<br>p make_em_grow.collect { |elem| elem ** 2 }<br>p make_em_grow<br>make_em_grow.collect! { |elem| elem ** elem }<br>p make_em_grow</pre>
+        <pre class="prettyprint result">[4, 16, 36, 64]<br>[2, 4, 6, 8]<br>[4, 256, 46656, 16777216]</pre>
+      </div>
+
+      <div class="description">
+        <p>The collect method iterates over each key:value pair of the hash, runs the code block on each key:value pair, and returns a new array.<br>The collect method will yield each key:value pair of a hash to the block.  But unlike the each method (which just returns the original array), collect will collect the results in a new array and return that instead.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">meals = { "breakfast" => "apple", "lunch" => "rice", "dinner" => "salad" }<br>nom = meals.map do |course, food|<br>  food = "cookie"<br>  "ME WANT #{food.upcase} FOR #{course.upcase}!!!"<br>end<br>p nom</pre>
+        <pre class="prettyprint result">["ME WANT COOKIE FOR BREAKFAST!!!",<br>  "ME WANT COOKIE FOR LUNCH!!!",<br>  "ME WANT COOKIE FOR DINNER!!!"]</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#collect_concat</h3>
+      <h4 class="section_header sub">#flat_map</h4>
+
+      <div class="description">
+        <p>The collect_concat method iterates over each element in the array, runs the code block on each element, and returns a new concatenated array.<br>Unlike the collect method, the collect_concat method concatenates the resulting array.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">original_array = [3, 15, 75, 375]<br>print "collect method results: "<br>p original_array.collect { |elem| [elem, -elem] }<br>print "collect_concat method results: "<br>p original_array.collect_concat { |elem| [elem, -elem] }</pre>
+        <pre class="prettyprint result">collect method results: [[3, -3], [15, -15], [75, -75], [375, -375]]<br>collect_concat method results: [3, -3, 15, -15, 75, -75, 375, -375]</pre>
+      </div>
+
+      <div class="description">
+        <p>The collect_concat method iterates over each key:value pair of the hash, runs the code block on each key:value pair, and returns a new concatenated array.<br>Unlike the collect method, the collect_concat method concatenates the resulting array.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">mega_nest = { a: { b: { c: 9, d: { e: { f: 7 } } } }, g: 2, h: { i: { } } }<br>puts "map method results: "<br>p mega_nest.map { |the_hash| the_hash + [99, 100] }<br>puts "flat_map method results: "<br>p mega_nest.flat_map { |the_hash| the_hash + [99, 100] }</pre>
+        <pre class="prettyprint result">map method results: <br>[[:a, {:b=>{:c=>9, :d=>{:e=>{:f=>7}}}}, 99, 100], [:g, 2, 99, 100], [:h, {:i=>{}}, 99, 100]]<br>flat_map method results: <br>[:a, {:b=>{:c=>9, :d=>{:e=>{:f=>7}}}}, 99, 100, :g, 2, 99, 100, :h, {:i=>{}}, 99, 100]</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#count</h3>
+
+      <div class="description">
+        <p>The count method returns the number of elements contained in the array it is called upon.<br>If the optional argument is passed, then the return value will be the number of elements found in the array that are equal to that argument.<br>If a block is given, then the return will be the number of elements for which the code block returns a true value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">number_fest = [73, 73, 37, 49, 94, 21, 73, 12, 73]<br>puts number_fest.count<br>puts number_fest.count(73)<br>puts number_fest.count { |num| num % 2 == 0 }</pre>
+        <pre class="prettyprint result">9<br>4<br>2</pre>
+      </div>
+
+      <div class="description">
+        <p>The count method returns the number of key:value pairs contained in the hash it is called upon.<br>If the optional argument is passed on a values-count method chain, then the return value will be the number of values found in the hash that are equal to that argument.  This can be done with keys using a keys-count chain, but this isn't too useful because every key in a hash must be unique.<br>If a block is given, then the return will be the number of elements for which the code block returns a true value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">rating = { low: 5, medium: 10, mid: 10, middle: 10, high: 15, extreme: 20 }<br>puts rating.count<br>puts rating.values.count(10)<br>puts rating.count { |num| num[1] % 2 == 0 }<br>puts rating.keys.count(:low)</pre>
+        <pre class="prettyprint result">6<br>3<br>4<br>1</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#cycle</h3>
+
+      <div class="description">
+        <p>The cycle method iterates over each element in the array and runs the code block on each element.<br>If the optional argument n is passed, then the code block will be run on each element n times.  If no argument or nil is passed, then the code block will be run on each element an infinite number of times.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">exponential_growth = [0, 6, 12]<br>exponential_growth.cycle(5) do |repeat|<br>  print repeat ** 3<br>  print " – "<br>end<br>#<br>hut_sut_raw = ["And ", "so ", "on ", "so_on ", "so-on, "]<br>hut_sut_raw.cycle { |lyric| print lyric }</pre>
+        <pre class="prettyprint result">0 – 216 – 1728 – 0 – 216 – 1728 – 0 – 216 – 1728 – 0 – 216 – 1728 – 0 – 216 – 1728 –<br>#<br>And so on so_on so-on, And so on so_on so-on, And so on so_on so-on,<strong><u>... FOREVER</strong></u></pre>
+      </div>
+
+      <div class="description">
+        <p>The cycle method iterates over each key:value pair in the hash and runs the code block on each key:value pair.<br>If the optional argument n is passed, then the code block will be run on each element n times.  If no argument or nil is passed, then the code block will be run on each element an infinite number of times.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">crew = { "Captain" => "Picard", "First Officer" => "Riker", "Science Officer" => "Data", "Tactical Officer" => "Worf" }<br>food = %w{Bacon Jahamaron Pizza Meatloaf Salad Gumbo}.cycle<br>crew.cycle { |rank, name| puts "I am #{rank} #{name} of USS Enterprise.  I shall prepare #{food.next}." }</pre>
+        <pre class="prettyprint result">I am Captain Picard of the USS Enterprise.  I shall prepare Bacon.<br>I am First Officer Riker of the USS Enterprise.  I shall prepare Jahamaron.<br>I am Science Officer Data of the USS Enterprise.  I shall prepare Pizza.<br>I am Tactical Officer Worf of the USS Enterprise.  I shall prepare Meatloaf.<br>I am Captain Picard of the USS Enterprise.  I shall prepare Salad.<br>I am First Officer Riker of the USS Enterprise.  I shall prepare Gumbo.<br>I am Science Officer Data of the USS Enterprise.  I shall prepare Bacon.<br>I am Tactical Officer Worf of the USS Enterprise.  I shall prepare Jahamaron.<strong><u>... FOREVER</strong></u></pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#detect</h3>
+      <h4 class="section_header sub">#find</h4>
+
+      <div class="description">
+        <p>The detect method iterates over each element in the array, searching for a certain element based on the return value of the code block.<br>The first element that returns true from the code block, will be the method return.  If no match is found, the return of the method will be nil.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">eighteen = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]<br>puts eighteen.detect { |num| num % 2 == 0 and num % 7 == 0 }<br>seven = [1, 2, 3, 4, 5, 6, 7]<br>p seven.detect { |num| num % 2 == 0 and num % 7 == 0 }</pre>
+        <pre class="prettyprint result">14<br>nil</pre>
+      </div>
+
+      <div class="description">
+        <p>The find method iterates over each element in the array, searching for a certain key:value pair based on the return value of the code block.<br>The first item that returns true from the code block, will be the method return.  If no match is found, the return of the method will be nil.  The method's return value will be an array with two elements – key & value.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">transport = { one_point: "pogo-stick", two_legs: "roller-blades", three_wheels: "tricycle" }<br>puts meal.find { |key, value| key == :one_point }</pre>
+        <pre class="prettyprint result">[:one_point, "pogo-stick"]</pre>
+      </div>
+
+    </section>
+
+        <section>
+      <h3 class="section_header">###07</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###08</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###09</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###10</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###11</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###12</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###13</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###14</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###15</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###16</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###17</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###18</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###19</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###20</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###21</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###22</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###23</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###24</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###25</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###26</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###27</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###28</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+        <section>
+      <h3 class="section_header">###29</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###30</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###31</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###32</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###33</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###34</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###35</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###36</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###37</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###38</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###39</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###40</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###41</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###42</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###43</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###44</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###45</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###46</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <section>
+      <h3 class="section_header">###47</h3>
+
+      <div class="description">
+        <p>ARRAY</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array =. work</pre>
+        <pre class="prettyprint result">array result</pre>
+      </div>
+
+      <div class="description">
+        <p>HASH</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">hash => work</pre>
+        <pre class="prettyprint result">hash result</pre>
+      </div>
+    </section>
+
+    <footer>
+
+    </footer>
+
+  </div></body>
+</html>

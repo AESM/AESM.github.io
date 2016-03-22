@@ -1,0 +1,66 @@
+* {
+  background-color: #444444;
+}
+
+
+a {
+  text-decoration: none;
+}
+
+.nav table {
+  margin: auto;
+}
+
+.nav table a{
+  color: #FFFFFF
+}
+
+.nav td {
+  padding: 0.75em;
+}
+
+.headshot {
+  display: table;
+  margin: auto;
+}
+
+.currentpost {
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.currentpost h4 {
+  margin-top: 60px;
+  font-size: 25px;
+}
+
+.currentpost p {
+  font-family: Courier;
+  font-size: 18px;
+}
+
+/*.oldposts {
+  text-align: center;
+  margin-top: 70px;
+}*/
+
+.oldposts a {
+  color: #5E0202;
+  font-family: Arial;
+  border: solid 1px;
+}
+
+.social {
+  text-align: center;
+  margin: auto;
+  display: block;
+  width: 45px;
+  padding-top: 300px
+}
+
+.social img {
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  margin-top: 0.4em;
+  display: block;

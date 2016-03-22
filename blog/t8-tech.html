@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>The Blog of Ali Esmaili</title>
+    <link type="text/css" rel="stylesheet" href="blog-stylesheet.css"/>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="nav">
+        <table>
+          <tr>
+            <td>
+              <a href="http://aesm.github.io">Home</a>
+            </td>
+
+            <td>
+              <a href="URL">About Me</a>
+            </td>
+
+            <td>
+              <a href="URL">Projects</a>
+            </td>
+
+            <td>
+              <a href="URL">Blog</a>
+            </td>
+
+            <td>
+              <a href="URL">Contact</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </header>
+
+    <div class="headshot">
+     <a href="About_Me_URL"><img src="AliE.png"></img></a>
+    </div>
+
+
+    <div class="title_and_sub">
+      <h1>Research</h1>
+      <h4>Tech</h4>
+      <h5>2014/11/30</h5>
+    </div>
+
+    <div class="currentpost">
+
+      <pre class="prettyprint lang-ruby">x = "Just Testing The Fun"<br>x.scan(/../) { |x| puts x }</pre>
+      <pre class="prettyprint result">Ju<br>st<br> T<br>es<br>ti<br>ng<br> T<br>he<br> F<br>un<br></pre>
+
+      <p class="words">A Regular Expression is a way to describe patterns in text that can be matched and compared against.  It is essentially a search query, or "a string that describes a pattern for matching elements in other strings."</p>
+
+      <p class="words">Forward slashes are used to start and end a regular expression.<br>You can add modifiers to your regular expressions, following a character, to modify what it is your regular expression is searching for.</p>
+
+      <pre class="prettyprint lang-ruby">x = "The car costs 20000 and the cat costs $45."<br>x.scan(/\d/) { |x| puts x }</pre>
+      <pre class="prettyprint result">2<br>0<br>0<br>0<br>0<br>4<br>5</pre>
+
+      <br><pre class="prettyprint lang-ruby">x = "The car costs 20000 and the cat costs $45."<br>x.scan(/\d+/) { |x| puts x }</pre>
+      <pre class="prettyprint result">20000<br>45</pre>
+
+      <p class="words"><br></p>
+
+      <p class="words"><br></p>
+
+    </div>
+
+    <div class="oldposts">
+      <a href="URL">Previous Entries</a>
+    </div>
+
+    <div class="social">
+          <a href="GitHubURL"><img src="github.png"/></a>
+          <a href="TwitterURL"><img src="twitter.png"/></a>
+          <a href="GoogleplusURL"><img src="google.png"/> </a>
+          <a href="LinkedInURL"><img src="linkedin.png"/></a>
+    </div>
+
+  </body>
+</html>

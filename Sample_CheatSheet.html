@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Website Title</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/Sample_CheatSheet.css"/>
+    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+  </head>
+
+  <body><div class="wrapper">
+
+    <header>
+
+      <h1 id="topic">Enumerable</h1>
+
+    </header>
+
+    <section>
+
+      <h3 class="section_header">#all?</h3>
+
+      <div class="description">
+        <p>The all? method iterates over each element of the array, comparing them all based on the data entered into the code block.  The return value is true if all of the elements meet the criteria, or false if at least one element does not.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array_num = [1, 2, 3, 5, 10]<br>array_num.all? { |elem| p elem > 3 }</pre>
+        <pre class="prettyprint result">false</pre>
+      </div>
+
+      <div class="description">
+        <p>The all? method iterates over each element of the hash, comparing them all based on the data entered into the code block.  The return value is true if all of the elements meet the criteria, or false if at least one element does not.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">meal = { "App" => "cheesebread", "Entree" => "steak", "Dessert" => "bread" }<br>puts meal.all? { |key, value| value.match('bread') }</pre>
+        <pre class="prettyprint result">false</pre>
+      </div>
+
+    </section>
+
+    <section>
+
+      <h3 class="section_header">#any?</h3>
+
+      <div class="description">
+        <p>The any? method iterates over each element of the array, looking to see if any of them contain the data entered into the code block.  The return value is true if an element meet the criteria, or false if an element does not.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">array_num = [1, 2, 3, 5, 10]<br>array_num.any? { |elem| p elem > 7 }</pre>
+        <pre class="prettyprint result">false<br>false<br>false<br>false<br>true</pre>
+      </div>
+
+      <div class="description">
+        <p>The any? method iterates over each element of the hash, looking to see if any of them contain the data entered into the code block.  The return value is true if an element meet the criteria, or false if an element does not.<br>The block takes two arguments – the key & the value.</p>
+      </div>
+
+      <div class="example">
+        <pre class="prettyprint lang-ruby">meal = { "App" => "cheesebread", "Entree" => "steak", "Dessert" => "bread" }<br>puts meal.any? { |key, value| value.match('bread') }</pre>
+        <pre class="prettyprint result">true</pre>
+      </div>
+
+    </section>
+
+    <footer>
+
+    </footer>
+
+  </div></body>
+</html>
